@@ -1,3 +1,6 @@
+# Redis Circular List
+
+```
 package main
 
 import (
@@ -5,13 +8,6 @@ import (
 	redis_lib "github.com/go-redis/redis/v8"
 	circular_list "github.com/0187773933/RedisCircularList/list"
 )
-
-// https://github.com/andymccurdy/redis-py/blob/1f857f0053606c23cb3f1abd794e3efbf6981e09/tests/test_commands.py
-// https://github.com/ceberous/redis-manager-utils/blob/master/BaseClass.js
-// https://github.com/48723247842/RedisCirclularList/blob/master/redis_circular_list/__init__.py
-// https://redis.io/commands/sadd
-// https://pkg.go.dev/builtin#error
-// https://pkg.go.dev/github.com/go-redis/redis/v8#BoolCmd.Err
 
 func main() {
 
@@ -34,3 +30,4 @@ func main() {
 	fmt.Printf( "Current = %s\n"  , circular_list.Current( redis_connection , "test" ) )
 
 }
+```
