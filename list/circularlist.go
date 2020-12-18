@@ -7,8 +7,9 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-func Current( redis_connection *redis.Client , redis_circular_list_key string ) ( result string ) {
+func Current( redis_connection *redis.Client , redis_circular_list_key string ) ( result string , index int ) {
 	result = "failed"
+	index = 0
 	var ctx = context.Background()
 	// 1.) Get Length
 	circular_list_length , circular_list_length_error := redis_connection.LLen( ctx , redis_circular_list_key ).Result()
@@ -30,6 +31,7 @@ func Current( redis_connection *redis.Client , redis_circular_list_key string ) 
 	current_in_circle , current_in_circle_error := redis_connection.LIndex( ctx , redis_circular_list_key , circular_list_index_int_64 ).Result()
 	if current_in_circle_error != nil { panic( circular_list_key_index_error ) }
 	result = current_in_circle
+	index = circular_list_key_index
 	return 
 }
 
