@@ -7,9 +7,9 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-func Current( redis_connection *redis.Client , redis_circular_list_key string ) ( result string , index int ) {
+func Current( redis_connection *redis.Client , redis_circular_list_key string ) ( result string , index string ) {
 	result = "failed"
-	index = 0
+	index = "0"
 	var ctx = context.Background()
 	// 1.) Get Length
 	circular_list_length , circular_list_length_error := redis_connection.LLen( ctx , redis_circular_list_key ).Result()
